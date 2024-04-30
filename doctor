@@ -16,15 +16,25 @@ internal class PROGRAM
         public int id { get; set; }
         public char gender { get; set; }
         public int count { get; set; }
+        public int number { get; set; } 
+        public string email { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string password { get; set; }
+        public string ConfirmPassword { get; set; }
 
-        public person(string name, int age, int id, char gender)
+        public person(string name, int age, int id, char gender, int number, string email, DateTime birthDate, string password, string confirmPassword)
         {
             this.name = name;
             this.age = age;
             this.id = id;
             this.gender = gender;
             this.count = count;
-    }
+            this.number = number;
+            this.email = email;
+            this.BirthDate = birthDate;
+            this.password = password;
+            this.ConfirmPassword = confirmPassword;
+        }
         public virtual void DisplayInformation()
         {
 
@@ -54,9 +64,16 @@ internal class PROGRAM
     public class patient : person
     {
         public string sickness { get; set; }
-        public patient(string sickness, int id, int age, string name, char gender) : base(name, id, age, gender)
+        public string history { get; set; }
+        public string address { get; set; }
+        public int emergencyNumber { get; set; }    
+        public patient(string sickness,string address, int id, int age, string name, char gender,int number,string email,int emergencyNumber, DateTime BirthDate,string history, string password,string ConfirmPassword) : base(name, id, age, gender,number,email,BirthDate,password, ConfirmPassword)
         {
             this.sickness = sickness;
+            this.address = address;
+            this.emergencyNumber = emergencyNumber;
+            this.history = history;
+
         }
 
         public override void ScheduleAppointment(int id, int date, string Doctor)
@@ -75,7 +92,7 @@ internal class PROGRAM
         public int experience { get; set; }
 
 
-        public Doctor(string specialization, int experience, int id, int age, string name, char gender) : base(name, id, age, gender)
+        public Doctor(string specialization, int experience, int id, int age, string name, char gender, int number, string email, DateTime BirthDate, string password, string ConfirmPassword) : base(name, id, age, gender, number, email, BirthDate, password,ConfirmPassword)
         {
             this.specialization = specialization;
             this.experience = experience;
@@ -98,7 +115,7 @@ internal class PROGRAM
         }
         public void prescription(string name, int id) // prescription written to the patient
         {
-
+                                            
         }
         public void tests(string name, int id)
         {
@@ -128,7 +145,7 @@ internal class PROGRAM
     public class frontdeskstaff : person , IAppointmentManager 
     {
         public string department;
-        public frontdeskstaff(int id, int age, string name, char gender) :base(name, id, age, gender)
+        public frontdeskstaff(int id, int age, string name, char gender,int number, string email, DateTime BirthDate, string password, string ConfirmPassword) :base(name, id, age, gender, number, email, BirthDate, password,ConfirmPassword)
         {
         }
         public override void DisplayInformation()
@@ -174,7 +191,7 @@ internal class PROGRAM
     public class Nurse : person
     {
         public string department;
-        public Nurse(string department,int age, string name, char gender, int id) : base(name, id, age, gender)
+        public Nurse(string department, int age, string name, char gender, int id, int number, string email, DateTime BirthDate, string password, string ConfirmPassword) : base(name, id, age, gender, number, email, BirthDate,password,ConfirmPassword)
         {
 
         }
